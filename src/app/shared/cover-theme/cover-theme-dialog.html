@@ -1,0 +1,43 @@
+<div mat-dialog-content>
+    <form *ngIf="coverThemeForm" [formGroup]="coverThemeForm">
+        <div style="display: inline-block;margin: 0 5px;">
+            <mat-form-field appearance="outline">
+                <mat-label>Name</mat-label>
+                <input matInput [(ngModel)]="data.name" formControlName="name" name="name" required>
+                <mat-error *ngIf="coverThemeForm.controls.name.invalid">Name is required</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div style="display: inline-block;margin: 0 5px;">
+            <mat-form-field appearance="outline">
+                <mat-label>Extra Price</mat-label>
+                <input matInput type="number" [(ngModel)]="data.price" formControlName="price" name="price" required>
+                <mat-error *ngIf="coverThemeForm.controls.price.invalid">Price is required</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="image-picker">
+          <div class="image-label">Attach File</div>
+          <div class="button-container">
+            <input type="file" style="display: none" #fileInput accept="image/*" (change)="onChangeFileInput()" />
+            <button [ngStyle]="{'background-image':'url('+data.image+')','background-size':'cover','width':'100%'}" mat-raised-button color="primary" class="file-select-button" (click)="onClickFileInputButton()">
+              <mat-icon>attach_file</mat-icon>
+            </button>
+          </div>
+        </div>
+        <!-- <div style="display: inline-block;margin: 0 5px;">
+            <mat-form-field>
+                <mat-label>Favorite food</mat-label>
+                <mat-select [(value)]="data.image">
+                    <mat-option [ngStyle]="{'background-image':'url('+image+')','background-size':'cover'}" *ngFor="let image of images" [value]="image">{{image}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div> -->
+        <div style="display: inline-block;margin: 0 5px;width: 204px;height: 5.538rem;">
+            <mat-checkbox [(ngModel)]="data.isActive" formControlName="isActive" name="isActive">Is Active</mat-checkbox>
+        </div>
+    </form> 
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button color="primary" (click)="confirmDialog()"  >Ok</button>
+</div>

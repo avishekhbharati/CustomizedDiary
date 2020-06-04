@@ -1,0 +1,32 @@
+<div mat-dialog-content>
+    <form *ngIf="colorForm" [formGroup]="colorForm">
+        <div style="display: inline-block;margin: 0 5px;">
+            <mat-form-field appearance="outline">
+                <mat-label>Name</mat-label>
+                <input matInput [(ngModel)]="data.name" formControlName="name" name="name" required>
+                <mat-error *ngIf="colorForm.controls.name.invalid">Name is required</mat-error>
+            </mat-form-field>
+        </div>
+        <div style="display: inline-block;margin: 0 5px;">
+            <mat-form-field appearance="outline">
+                <mat-label>Extra Price</mat-label>
+                <input matInput type="number" [(ngModel)]="data.price" formControlName="price" name="price" required>
+                <mat-error *ngIf="colorForm.controls.price.invalid">Price is required</mat-error>
+            </mat-form-field>
+        </div>
+        <div style="display: inline-block;margin: 0 5px;">
+            <mat-form-field appearance="outline">
+                <mat-label>Value</mat-label>
+                <input matInput type="color" [(ngModel)]="data.value" formControlName="value" name="value" required>
+                <mat-error *ngIf="colorForm.controls.value.invalid">Color value is required</mat-error>
+            </mat-form-field>
+        </div>
+        <div style="display: inline-block;margin: 0 5px;">
+            <mat-checkbox [(ngModel)]="data.isActive" formControlName="isActive" name="isActive">Is Active</mat-checkbox>
+        </div>
+    </form> 
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button color="primary" (click)="confirmDialog()"  >Ok</button>
+</div>

@@ -1,0 +1,5 @@
+<mat-chip [ngStyle]="{'background-image':'url('+data.image+')','background-size':'cover','background-blend-mode':'overlay','text-decoration':data.isActive?'':'line-through'}" class="mat-standard-chip" [selectable]="selectable"
+       [removable]="removable" (removed)="deleteTheme.emit()" (click)="openDialog()">
+{{data.name}}
+<mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+</mat-chip>

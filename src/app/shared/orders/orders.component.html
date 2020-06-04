@@ -1,0 +1,68 @@
+<mat-card class="manage-admin-card">
+  <mat-card-header>
+    <mat-card-title>USER ORDER HISTORY</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <!-- button to delete entire history for a loggedin user -->
+    <button mat-stroked-button color="warn" (click)="deleteallrecords()">delete history</button>
+
+    <table mat-table [dataSource]="dataSource">
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="fullname">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.fullname}} </td>
+      </ng-container>
+
+      <!-- Email Column -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> Email </th>
+        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="payment_method">
+        <th mat-header-cell *matHeaderCellDef> Payment Method </th>
+        <td mat-cell *matCellDef="let element"> {{element.payment_method}} </td>
+      </ng-container>
+
+      <!-- Email Column -->
+      <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+        <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+      </ng-container>
+
+      <!-- Email Column -->
+      <ng-container matColumnDef="createdAt">
+        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+        <td mat-cell *matCellDef="let element"> {{element.createdAt.split('T')[0]}} </td>
+      </ng-container>
+
+      <!-- Email Column -->
+      <ng-container matColumnDef="data">
+        <th mat-header-cell *matHeaderCellDef> Item </th>
+        <td mat-cell *matCellDef="let element"> {{element.data}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="total">
+        <th mat-header-cell *matHeaderCellDef> Total </th>
+        <td mat-cell *matCellDef="let element"> $ {{element.total}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <a mat-stroked-button color="warn" (click)="deleteOrder(element)">Delete</a>
+        </td>
+      </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+      </tr>
+
+    </table>
+  </mat-card-content>
+</mat-card>

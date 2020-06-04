@@ -1,0 +1,25 @@
+<div mat-dialog-content>
+    <form *ngIf="coverThemeForm" [formGroup]="coverThemeForm">
+        <div style="display: inline-block;margin: 0 5px;">
+            <mat-form-field appearance="outline">
+                <mat-label>Name</mat-label>
+                <input matInput [(ngModel)]="data.name" formControlName="name" name="name" required>
+                <mat-error *ngIf="coverThemeForm.controls.name.invalid">Name is required</mat-error>
+            </mat-form-field>
+        </div>
+        <div style="display: inline-block;margin: 0 5px;">
+            <mat-form-field appearance="outline">
+                <mat-label>Extra Price</mat-label>
+                <input matInput type="number" [(ngModel)]="data.price" formControlName="price" name="price" required>
+                <mat-error *ngIf="coverThemeForm.controls.price.invalid">Price is required</mat-error>
+            </mat-form-field>
+        </div>
+        <div style="display: inline-block;margin: 0 5px;width: 204px;height: 5.538rem;">
+            <mat-checkbox [(ngModel)]="data.isActive" formControlName="isActive" name="isActive">Is Active</mat-checkbox>
+        </div>
+    </form> 
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button color="primary" (click)="confirmDialog()"  >Ok</button>
+</div>

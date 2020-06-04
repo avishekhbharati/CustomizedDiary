@@ -1,0 +1,68 @@
+<h2 class="diary-header">Diary Customization</h2>
+<mat-grid-list cols="2" rowHeight="80vh">
+    <mat-grid-tile [colspan]="1" [rowspan]="1" class="content-scroll">
+        <div class="inside" [ngStyle]="{'background-color':paperColor.value}">
+            <ng-container *ngIf="paperType.name=='lined' || paperType.name=='dotted'">
+                <div *ngFor="let i of numArr" class="line" [style.border-top]="(paperType.name=='lined')?'solid':'dotted'"></div>
+            </ng-container>
+        </div>
+        <div class="cover" [ngStyle]="{'background-image':'url('+coverTheme.image+')'}">
+            <div class="cover-text">{{coverText}}</div>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan]="1" [rowspan]="1" class="content-scroll">
+        <form *ngIf="diaryForm && diaryCustomization" [formGroup]="diaryForm" class="diary-form">
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Cover Text</mat-label>
+                    <input matInput placeholder="Cover Text" formControlName="coverText" 
+                        name="coverText" required>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Paper Color</mat-label>
+                    <mat-select formControlName="paperColor" name="paperColor" required>
+                        <mat-option *ngFor="let option of diaryCustomization.customization.paperColor"
+                            [value]="option" [disabled]="!option.isActive" (click)="updatePrice('paperColor', option.price)">
+                            {{option.name}} - ${{option.price}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Cover Theme</mat-label>
+                    <mat-select formControlName="coverTheme" name="coverTheme" required>
+                        <mat-option *ngFor="let option of diaryCustomization.customization.coverTheme"
+                            [value]="option" [disabled]="!option.isActive" (click)="updatePrice('coverTheme', option.price)">
+                            {{option.name}} - ${{option.price}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Paper Type</mat-label>
+                    <mat-select formControlName="paperType" name="paperType" required>
+                        <mat-option *ngFor="let option of diaryCustomization.customization.paperType"
+                            [value]="option" [disabled]="!option.isActive" (click)="updatePrice('paperType', option.price)">
+                            {{option.name}} - ${{option.price}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="outline">
+                    <mat-label>Quantity</mat-label>
+                    <input matInput placeholder="Quantity" formControlName="quantity" type="number" min="1" max="10"
+                        name="quantity" (change)="updatePrice('',0)" required>
+                        <mat-error *ngIf="diaryForm.controls.quantity.invalid">Quantity should be between 1 - 10</mat-error>
+                </mat-form-field>
+            </div>
+            <button class="checkout-btn" mat-raised-button (click)="checkout()" color="primary" [disabled]="diaryForm.invalid">
+                Checkout - Total Cost: ${{price}}
+            </button>
+        </form>
+    </mat-grid-tile>
+</mat-grid-list>

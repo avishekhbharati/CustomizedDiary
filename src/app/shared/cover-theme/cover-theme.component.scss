@@ -1,0 +1,28 @@
+div {
+  background-image: url('../../../assets/bg1.jpg');
+  background-image: url('../../../assets/bg2.jpg');
+  background-image: none;
+}
+
+.image-picker {
+  display: inline-block;
+  margin: 0 5px;
+  width: 204px;
+  height: 63px;
+  border: 1px solid lightgray;
+  border-radius: 7px;
+  position: relative;
+  .image-label {
+    position: absolute;
+    top: -9px;
+    font-size: 13px;
+    color: grey;
+    font-family: 'Exo';
+    left: 6px;
+    background: ghostwhite;
+    padding: 0px 7px;
+  }
+  .button-container {
+    padding: 15px 10px;
+  }
+}
